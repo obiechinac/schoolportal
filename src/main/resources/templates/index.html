@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="fragments.html :: headerfiles"></head>
+<body>
+<header th:insert="fragments.html :: nav"></header>
+<!-- Page content goes here -->
+<section id="hero">
+<div class="hero-container">
+
+        <h1 class="display-2" >Hello, Welcome to the university of Texas!</h1>
+        <p class="lead">This is the home page of our web application. Anyone can access it, even if they have not signed in.</p>
+        <hr class="my-4">
+        <p> more will be coming up on this portal</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="https://spring.io/projects/spring-security" role="button">Learn more about our online courses </a>
+        </p>
+</div>
+</section>
+<span></span>
+    <main th:insert="fragments.html::main"></main>
+
+<div th:insert="fragments.html::footer"></div>
+<div th:insert="fragments.html::scripts"></div>
+
+</body>
+</html>

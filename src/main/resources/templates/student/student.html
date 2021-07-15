@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="fragments.html::headerfiles">
+    <title>Student Page</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<main id="main">
+    <section id="about" class="about">
+        <div class="container">
+            <div class="card">
+                <div class="card-block text-center">
+                    <img height="250px" style="margin-bottom: 5px; border: 1px solid black;"
+                         th:src="${student.picturePath} ? (|/mm_pics/${student.picturePath}|) : 'http://www.hghtherapy.me/wp-content/uploads/2012/02/happy-doctor4.jpg'"
+                         alt=""/>
+
+                    <h4 class="card-title">
+                        <a class="h2 text-centre" th:text="|Welcome  ${student.firstName}  ${student.surName} |">Student
+                            Name</a>
+
+                    </h4>
+
+                    <br/>
+                    <small class="text-muted"
+                           th:text="|Level: ${#dates.year(#dates.createNow()) - #dates.year(student.dateOfAdmission) + 0} 00 level|"></small>
+                    <br/>
+                    <small class="text-muted" th:text="|Telephone: ${student.telephoneNumber}|">Telephone number: #
+                    </small>
+                </div>
+            </div>
+            <!--<div class="card">-->
+            <!--<div class="card-block text-center">-->
+            <!--<h2 class="h2 text-centre" th:text="Welcome  ${lecturer.lecturerTitle}+ ' ' + ${lecturer.lastName} "></h2>-->
+            <!--<h3 class="h3 text-centre" th:text="|Faculty of ${department.faculty.facultyName}|">faculty name</h3>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<p>List of Students <a th:href="/allStudents/${department.students.studentNames}"></a> </p>&ndash;&gt;-->
+            <!--</div>-->
+            <!--<table>-->
+            <!--<thead>-->
+            <!--<tr>-->
+            <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+            <!--<th>Course</th>-->
+            <!--<th></th>-->
+            <!--&lt;!&ndash;<th th:text="    "></th>&ndash;&gt;-->
+            <!--<th>Date</th>-->
+            <!--<th></th>-->
+            <!--&lt;!&ndash;<th th:text="    "></th>&ndash;&gt;-->
+            <!--<th>Period</th>-->
+            <!--<th></th>-->
+            <!--&lt;!&ndash;<th th:text="    "></th>&ndash;&gt;-->
+            <!--<th>Venue</th>-->
+            <!--<th></th>-->
+            <!--&lt;!&ndash;<th th:text="    "></th>&ndash;&gt;-->
+            <!--<th>Block</th>-->
+            <!--<th></th>-->
+            <!--&lt;!&ndash;<th th:text="    "></th>&ndash;&gt;-->
+            <!--<th>Room</th>-->
+            <!--<th></th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr></tr>-->
+            <!--<tr th:each="schedule:${schedules}">-->
+            <!--<td th:text="${schedule.course.courseName}+'('+${schedule.course.courseCode}+')'"></td>-->
+            <!--<td></td>-->
+            <!--<td th:text="${schedule.daysOfWeek.dayName}"></td>-->
+            <!--<td></td>-->
+            <!--<td th:text="${schedule.periods.timeName}"></td>-->
+            <!--<td></td>-->
+            <!--<td th:text="${schedule.venues.campName}"></td>-->
+            <!--<td></td>-->
+            <!--<td th:text="${schedule.block.blockName}"></td>-->
+            <!--<td></td>-->
+            <!--<td th:text="${schedule.room.roomName}"></td>-->
+            <!--<td></td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+            <!--</table>-->
+
+
+            <div id="field schedules">
+
+
+            </div>
+
+            <div class="">
+                <h4>Student meeting will be holding on friday 17th <a th:text="Here" th:href="@{/registerCourses}"></a>
+                </h4>
+            </div>
+        </div>
+    </section>
+</main>
+<footer th:insert="fragments.html::foter"></footer>
+<script th:insert="fragments.html::scripts"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="fragments.html::headerfiles">
+    <title>Student Schedule </title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<main id="main">
+    <section id="about" class="about">
+        <div class="container">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dard">
+                <tr>
+                    <th>Course</th>
+                    <th></th>
+                    <th>Date</th>
+                    <th></th>
+                    <th>Period</th>
+                    <th></th>
+                    <th>Venue</th>
+                    <th></th>
+                    <th>Block</th>
+                    <th></th>
+                    <th>Room</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr></tr>
+                <tr th:each="schedule:${schedules}">
+                    <td th:text="${schedule.course.courseName}+'('+${schedule.course.courseCode}+')'"></td>
+                    <td></td>
+                    <td th:text="${schedule.daysOfWeek.dayName}"></td>
+                    <td></td>
+                    <td th:text="${schedule.periods.timeName}"></td>
+                    <td></td>
+                    <td th:text="${schedule.venues.campName}"></td>
+                    <td></td>
+                    <td th:text="${schedule.block.blockName}"></td>
+                    <td></td>
+                    <td th:text="${schedule.room.roomName}"></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+
+            <div id="field schedules">
+
+
+            </div>
+
+            <div class="">
+                <h4>Departmental meeting will be holding on friday 17th <a th:text="Here" th:href="@{/registerCourses}"></a>
+                </h4>
+            </div>
+        </div>
+    </section>
+</main>
+<div th:insert="fragments.html::footer"></div>
+<div th:insert="fragments.html::scripts"></div>
+</body>
+</html>

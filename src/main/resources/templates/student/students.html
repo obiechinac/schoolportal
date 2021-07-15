@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="fragments.html::headerfiles">
+    <title>Students</title>
+    <!--<link rel="stylesheet" href="../../static/css/commons.css"-->
+    <!--th:href="@{~/css/commons.css}"/>-->
+</head>
+<!--<head th:replace="fragments.html::nav">-->
+<!--<link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css"-->
+<!--th:href="@{~/bootstrap/css/bootstrap.min.css}"/>-->
+</head>
+<body>
+<header th:replace="fragments.html::nav">
+</header>
+<main id="main">
+    <section id="about" class="about">
+        <div class="container">
+            <h1 class="h1 text-center">Students</h1>
+
+            <div class="card-deck">
+                <div th:each="student,iter : ${students}" class="col-md-6 col-lg-3" style=" padding-bottom: 15px;">
+                    <div class="card">
+                        <div class="card-block text-center">
+                            <img height="100px" style="margin-bottom: 5px; border: 1px solid black;"
+                                 th:src="${student.picturePath} ? (|/mm_pics/${student.picturePath}|) : 'http://www.hghtherapy.me/wp-content/uploads/2012/02/happy-doctor4.jpg'"
+                                 alt=""/>
+
+                            <!--<h4 class="card-title">-->
+                            <!--<a th:text="|Dr. ${doctor.firstName} ${doctor.lastName}|" th:href="|/doctors/${doctor.id}|">Dr.-->
+                            <!--Name</a>-->
+                            <!--</h4>-->
+                            <h4 class="card-title">
+                                <a class="h2 text-centre" th:text="|Welcome  ${student.firstName} ${student.surName}|"
+                                   th:href="|/student/students/${student.stdId}|">Student Name</a>
+
+                            </h4>
+
+                            <!--<small class="text-muted" th:text="|City: ${doctor.settlePointName}|">City: Varna</small>-->
+                            <br/>
+                            <small class="text-muted"
+                                   th:text="|Level: ${#dates.year(#dates.createNow()) - #dates.year(student.dateOfAdmission) + 0} 00 level|"></small>
+                            <br/>
+                            <small class="text-muted" th:text="|Telephone: ${student.telephoneNumber}|">Telephone
+                                number: #
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <nav aria-label="Page navigation example" th:if="!${#lists.isEmpty(students)}">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="!${students.hasPrevious()}? 'disabled'">
+                        <a class="page-link"
+                           th:href="${students.hasPrevious()} ? '/lecturers?page=' + ${students.previousPageable().getPageNumber()}">Previous</a>
+                    </li>
+                    <li class="page-item" th:each="i : ${#numbers.sequence(0, students.getTotalPages() - 1)}">
+                        <a class="page-link" href="#" th:href="|/lecturers?page=${i}|" th:text="${i + 1}">1</a>
+                    </li>
+                    <li class="page-item" th:classappend="!${students.hasNext()}? 'disabled'">
+                        <a class="page-link" href="#"
+                           th:href="${students.hasNext()} ? '/lecturers?page=' + ${students.nextPageable().getPageNumber()}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <br/>
+        </div>
+    </section>
+</main>
+<footer th:insert="fragments.html::footer"></footer>
+<div th:replace="fragments.html::scripts"></div>
+<!--</div>-->
+
+</body>
+</html>

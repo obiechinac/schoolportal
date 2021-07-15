@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <head th:replace="fragments.html::headerfiles">
+    </head>
+    <title>Edit Program</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<main id="main">
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Edit Program</h2>
+            <hr>
+            <p class="h4 mb-3">Edit Program</p>
+
+            <form action="#" th:action="@{/program/saveEditProgram}" th:object="${program}"
+                  method="POST">
+
+                <!-- add a hidden form field to handle the update and delete -->
+                <input type="hidden" th:field="*{programeId}"/>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="program">Program Name</label>
+                    <input type="text" th:field="*{programName}" class="form-control mb-4 col-4" id="program">
+                </div>
+                <br><<br>
+                <select class="form-control" th:field="*{department}">
+                    <option value="">Select Department</option>
+                    <option th:each="department:${departments}"
+                            th:value="${department.deptId}"
+                            th:text="${department.deptName}"></option>
+                </select>
+                <br><br>
+                <button type="submit" class="btn btn-info col-3">Update</button>
+            </form>
+            <hr>
+            <a th:href="@{/index}">Back to Home</a>
+
+        </div>
+    </section>
+</main>
+<div th:insert="fragments.html::footer"></div>
+<div th:replace="fragments.html::scripts">
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="fragments.html::headerfiles">
+
+
+    <title>Save Course</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<main id="main">
+<section id="about" class="about">
+<div class="container">
+    <h3>Add Course</h3>
+    <hr>
+    <p class="h4 mb-3">Save Course</p>
+
+    <form action="#" th:action="@{/course/saveCourse}" th:object="${course}"
+          method="POST">
+
+        <!-- add a hidden form field to handle the update and delete -->
+        <input type="hidden" th:field="*{courseId}"/>
+
+        <input type="text" th:field="*{courseName}"
+               class="form-control mb-4 col-4" placeholder="Course Name : Use Of English">
+        <input type="text" th:field="*{courseCode}"
+        class="form-control mb-4 col-4" placeholder="courseCode">
+        <input type="text" th:field="*{creditUnit}"
+        class="form-control mb-4 col-4" placeholder="creditUnit eg 4.0">
+        <select  class="" th:field="*{venues}">
+            <option value="">Select venue</option>
+            <option th:value="${venues}">First Camp</option>
+            <option th:value="${venues2}">Second Camp</option>
+        </select>
+        <input type="text" th:field="*{duration}"
+        class="form-control mb-4 col-4" placeholder="Duration in hours">
+        <button type="submit" class="btn btn-info col-2">Save</button>
+    </form>
+    <hr>
+    <a th:href="@{/index}">Back to Home</a>
+
+</div>
+</section>
+</main>
+<div th:insert="fragments.html::footer"></div>
+<div th:insert="fragments.html::scripts"></div>
+</body>
+</html>

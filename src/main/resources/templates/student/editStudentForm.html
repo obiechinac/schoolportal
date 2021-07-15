@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <head th:replace="fragments.html::headerfiles">
+    </head>
+    <title>Edit Profile</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<main id="main">
+    <section class="about" th:class="about">
+        <div class="container">
+            <h2>Edit my profile</h2>
+            <hr>
+            <div sec:authorize="hasRole('ROLE_STUDENT')">
+            <p class="h4 mb-3">Edit Profile</p>
+            <div sec:authorize="hasRole('ROLE_STUDENT')">
+                <form th:action="@{/student/saveStudentImage}" th:object="${editPectureModel}" method="post"
+                      enctype="multipart/form-data">
+                    <div>
+                        <div class="form-group">
+                            <img id="student-picture" height="250px"
+                                 style="margin-bottom: 5px; border: 1px solid black;"
+                                 src="" alt=""/>
+                            <br/>
+                            <label class="form-control-label" for="img-">Picture</label>
+                            <input type="file" class="form-control form-control-danger" id="img-" name="fileBody"
+                                   accept="image/jpeg, image/png, image/jpg"/>
+                        </div>
+
+                        <button type="submit" id="update-picture-bt" class="btn btn-secondary float-right">Change
+                            Picture
+                        </button>
+                        <br/>
+                    </div>
+                </form>
+            </div>
+            </div>
+
+            <form action="#" th:action="@{/student/saveEditStudent}" th:object="${student}"
+                  method="POST">
+                <div class="form-group">
+                    <label class="form-control-label" for="surname">Sur Name</label>
+                    <input type="text" th:field="*{surName}" class="form-control mb-4 col-4" id="surname">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="inputFirstName">First Name</label>
+                    <input type="text" th:field="*{firstName}" id="inputFirstName" class="form-control mb-4 col-4">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="secondname">second Name</label>
+                    <input type="text" th:field="*{secondName}" id="secondname" class="form-control mb-4 col-4">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="dateOfBirth">Date of birth</label>
+                    <input type="text" th:field="*{dateOfBirth}" id="dateOfBirth" class="form-control mb-4 col-4">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="phoneNumber">Phone Number</label>
+                    <input type="text" th:field="*{telephoneNumber}" id="phoneNumber" class="form-control mb-4 col-4">
+                </div>
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                    <select class="form-control" th:field="*{programe}">
+                        <option value="">Select Program</option>
+                        <option th:each="program:${program}"
+                                th:value="${program.programeId}"
+                                th:text="${program.programName}"></option>
+                    </select>
+                </div>
+                <br><<br>
+                <button type="submit" class="btn btn-info col-3">Update</button>
+            </form>
+            <hr>
+            <a th:href="@{/index}">Back to Home</a>
+
+        </div>
+    </section>
+</main>
+<footer th:insert="fragments.html::footer"></footer>
+<script th:insert="fragments.html::scripts"></script>
+
+<script type="text/javascript" th:inline="javascript">
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head >
+    <head  th:replace="fragments.html::headerfiles">
+    </head>
+    <title>Edit Course</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<main id="main">
+    <section id="about" class="about">
+<div class="container">
+    <h2>Edit Course</h2>
+    <hr>
+    <p class="h4 mb-3">Edit Course</p>
+
+    <form action="#" th:action="@{/course/saveEditCourse}" th:object="${course}"
+          method="POST">
+
+        <!-- add a hidden form field to handle the update and delete -->
+        <input type="hidden" th:field="*{courseId}"/>
+
+<div class="form-group">
+    <label class="form-control-label" for="surname">Course Name</label>
+        <input type="text" th:field="*{courseName}" class="form-control mb-4 col-4" id="surname">
+               <!--class="form-control mb-4 col-4"  th:text="${student.surName}" id="surname">-->
+</div>
+        <div class="form-group">
+        <label class="form-control-label" for="inputFirstName">Course Code</label>
+        <input type="text" th:field="*{courseCode}" id="inputFirstName" class="form-control mb-4 col-4">
+        </div>
+        <div class="form-group">
+        <label class="form-control-label" for="secondname">Credit Unit </label>
+        <input type="text" th:field="*{creditUnit}" id="secondname" class="form-control mb-4 col-4">
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="secondnam">Hour Duration </label>
+            <input type="text" th:field="*{duration}" id="secondnam" class="form-control mb-4 col-4">
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="secondna">Venue </label>
+            <input type="text" th:field="*{venues}" id="secondna" class="form-control mb-4 col-4">
+        </div>
+        <select class="form-control" th:field="*{department}">
+            <option value="">Select Department</option>
+            <option th:each="department:${departments}"
+                    th:value="${department.deptId}"
+                    th:text="${department.deptName}"></option>
+        </select>
+        <br>
+        <div sec:authorize="hasRole('ROLE_ADMIN')">
+            <input type="checkbox" class="form-control"
+                   th:each="lecturer: ${lecturers}"
+                   th:value="${lecturer.lecturerId}"
+                   th:text="${lecturer.surName}"
+                   th:field="*{lecturers}">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-info col-3">Update</button>
+    </form>
+    <hr>
+    <a th:href="@{/index}">Back to Home</a>
+
+</div>
+    </section>
+</main>
+<footer th:insert="fragments.html::footer"></footer>
+<div th:replace="fragments.html::scripts">
+</div>
+</body>
+</html>

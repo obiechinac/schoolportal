@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="fragments.html::headerfiles">
+
+    <title>Department</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<main id="main">
+    <section id="about" class="about">
+
+
+        <div class="container">
+            <div class="card">
+                <div class="card-block text-center">
+                    <h2 class="h2 text-centre" th:text="|Welcome to department of ${department.deptName}|"></h2>
+                </div>
+            </div>
+
+            <div class="">
+                <h4>Choose your Department and complete your semester registration here <a th:text="Here"
+                                                                                        th:href="#"></a>
+                </h4>
+            </div>
+        </div>
+    </section>
+</main>
+<footer th:insert="fragments.html::footer"></footer>
+<script th:insert="fragments.html::scripts"></script>
+</body>
+</html>

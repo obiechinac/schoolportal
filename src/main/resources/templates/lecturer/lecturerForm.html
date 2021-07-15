@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="fragments.html::headerfiles">
+
+    <title>Save lecturer</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<main id="main">
+    <div id="about" class="about">
+<div class="container">
+    <h3>Add lecturer</h3>
+    <hr>
+    <p class="h4 mb-3">Save Lecturer</p>
+
+    <form action="#" th:action="@{/lecturer/saveLecturer}" th:object="${lecturer}"
+          method="POST">
+        <input type="text" th:field="*{surName}"
+               class="form-control mb-4 col-4" placeholder="SurName">
+        <input type="text" th:field="*{firstName}"
+               class="form-control mb-4 col-4" placeholder="First Name ">
+        <input type="text" th:field="*{secondName}"
+               class="form-control mb-4 col-4" placeholder="Second Name ">
+        <input type="text" th:field="*{email}"
+               class="form-control mb-4 col-4" placeholder="Email address">
+        <input type="text" th:field="*{lecturerGrade}"
+               class="form-control mb-4 col-4" placeholder="lecturer's Grade">
+        <input type="text" th:field="*{lecturerTitle}"
+               class="form-control mb-4 col-4" placeholder="lecturer's Title">
+        <select class="form-control mb-4 col-4" th:field="*{gender}">
+            <option value="">Choose Gender</option>
+            <option th:value="MALE">Male</option>
+            <option th:value="FEMALE">Female</option>
+        </select>
+        <input type="text" th:field="*{telephoneNumber}"
+               class="form-control mb-4 col-4" placeholder="Phone Number">
+
+        <input type="text" th:field="*{employmentNumber}"
+               class="form-control mb-4 col-4" placeholder="Employment Number">
+        <input type="text" th:field="*{dateOfBirth}"
+               class="form-control mb-4 col-4" placeholder="Date Of Birth(2021-07-15)" th:value="${#dates.format(#dates.createNow(),'dd-MMM-yyyy')}">
+        <input type="text" th:field="*{dateOfemployment}"
+               class="form-control mb-4 col-4" placeholder="Date Of Employment(2021-07-15)" th:value="${#dates.format(#dates.createNow(),'dd-MMM-yyyy')}">
+        <input type="text" th:field="*{username}"
+               class="form-control mb-4 col-4" placeholder="UserName">
+        <input type="password" th:field="*{password}"
+               class="form-control mb-4 col-4" placeholder="password">
+        <input type="password" th:field="*{confirmPassword}"
+               class="form-control mb-4 col-4" placeholder="confirmPassword">
+
+        <p></p>
+        <button type="submit" class="btn btn-info col-2">Save</button>
+    </form>
+    <hr>
+    <a th:href="@{/index}">Back to Home</a>
+
+</div>
+    </div>
+</main>
+</body>
+</html>

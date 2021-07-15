@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="fragments.html::headerfiles">
+
+    <title>Courses</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+
+<main id="main">
+<section class="about" id="about">
+<div class="container">
+   <div class="section-title">
+       <h2>Choose Courses</h2>
+   </div>
+    <form action="#" th:action="@{/student/chooseCourses}" th:object="${student}"
+          method="POST">
+
+
+
+    <div class="col-md-9">
+        <input type="checkbox" class="form-control"
+                   th:each="course: ${courses}"
+                   th:value="${course.courseId}"
+                   th:text="${course.courseName}"
+                   th:field="*{courses}">
+    </div>
+        <p></p>
+        <button type="submit" class="btn btn-info col-2">Save</button>
+    </form>
+
+</div>
+</section>
+</main>
+<footer th:insert="fragments.html::footer"></footer>
+<script th:insert="fragments.html::scripts"></script>
+
+</body>
+</html>

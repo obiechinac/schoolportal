@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head  th:insert="fragments.html::headerfiles">
+
+    <title>Save student</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<div class="container">
+    <h3>Add student</h3>
+    <hr>
+    <p class="h4 mb-3">Save student</p>
+
+    <form action="#" th:action="@{/student/saveStudent}" th:object="${student}"
+          method="POST">
+
+        <!-- add a hidden form field to handle the update and delete -->
+        <!--<input type="hidden" th:field="*{stdId}"/>-->
+
+        <input type="text" th:field="*{surName}"
+               class="form-control mb-4 col-4" placeholder="SurName">
+        <input type="text" th:field="*{firstName}"
+               class="form-control mb-4 col-4" placeholder="First Name ">
+        <input type="text" th:field="*{secondName}"
+               class="form-control mb-4 col-4" placeholder="Second Name ">
+        <input type="text" th:field="*{email}"
+               class="form-control mb-4 col-4" placeholder="Email address">
+        <input type="text" th:field="*{admissionNumber}"
+               class="form-control mb-4 col-4" placeholder="Admission Number">
+        <input type="text" th:field="*{dateOfBirth}"
+               class="form-control mb-4 col-4" placeholder="Date Of Birth(2021-07-15)" th:value="${#dates.format(#dates.createNow(),'dd-MMM-yyyy')}">
+        <input type="text" th:field="*{dateOfAdmission}"
+               l?ass="form-control mb-4 col-4" placeholder="Date Of Admission(2021-07-15)" th:value="${#dates.format(#dates.createNow(),'dd-MMM-yyyy')}">
+        <input type="text" th:field="*{username}"
+               class="form-control mb-4 col-4" placeholder="UserName">
+        <input type="password" th:field="*{password}"
+               class="form-control mb-4 col-4" placeholder="password">
+        <input type="password" th:field="*{confirmPassword}"
+               class="form-control mb-4 col-4" placeholder="confirmPassword">
+        <select class="form-control" th:field="*{gender}">
+            <option value="">Choose Gender</option>
+            <option th:value="MALE">Male</option>
+            <option th:value="FEMALE">Female</option>
+        </select>
+        <input type="text" th:field="*{telephoneNumber}"
+               class="form-control mb-4 col-4" placeholder="Phone Number">
+        <!--<select class="form-control" th:field="*{department}">-->
+            <!--<option value="">Select Department</option>-->
+            <!--<option th:each="department:${departments}"-->
+                    <!--th:value="${department.deptId}"-->
+                    <!--th:text="${department.deptName}"></option>-->
+        <!--</select>-->
+        <!--<select class="form-control" th:field="*{programe}">-->
+            <!--<option value="">Select Programe</option>-->
+            <!--<option th:each="program:${programs}"-->
+                    <!--th:value="${program.programeId}"-->
+                    <!--th:text="${program.programName}"></option>-->
+        <!--</select>-->
+        <!--<input type="checkbox" class="form-control"-->
+               <!--th:each="course : ${courses}"-->
+               <!--th:value="${course.courseId}"-->
+               <!--th:text="${course.courseName}"-->
+               <!--th:field="*{courses}">-->
+        <!--<input type="text" th:field="*{degree}"-->
+        <!--class="form-control mb-4 col-4" placeholder="Degree">-->
+
+        <!--<input type="text" th:field="*{experience}"-->
+        <!--class="form-control mb-4 col-4" placeholder="Your Experience">-->
+        <button type="submit" class="btn btn-info col-2">Save</button>
+        <button type="submit" class="btn btn-info col-2">Update</button>
+    </form>
+    <hr>
+    <a th:href="@{/permitall/list}">Back to Home</a>
+
+</div>
+
+</body>
+</html>

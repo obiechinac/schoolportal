@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:insert="fragments.html::headerfiles">
+
+    <title>Save Department</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<main id="main">
+    <section id="about" class="about">
+
+        <div class="container">
+            <h3>Edit Department</h3>
+            <hr>
+            <p class="h4 mb-3">Save Department</p>
+
+            <form action="#" th:action="@{/department/saveEditDepartment}" th:object="${department}"
+                  method="POST">
+
+                <!-- add a hidden form field to handle the update and delete -->
+                <input type="hidden" th:field="*{deptId}"/>
+
+                <input type="text" th:field="*{deptName}"
+                       class="form-control mb-4 col-4" placeholder="Department Name">
+                <select class="form-control" th:field="*{faculty}">
+                    <option value="">Select Faculty</option>
+                    <option th:each="faculty:${department.faculty}"
+                            th:value="${faculty.facultyId}"
+                            th:text="${faculty.facultyName}"></option>
+                </select>
+                <p></p>
+                <input type="checkbox" class="form-control"
+                       th:each="program : ${programs}"
+                       th:value="${program.programeId}"
+                       th:text="${program.programName}"
+                       th:field="*{programes}">
+                <br><br>
+                <br><br>
+                <button type="submit" class="btn btn-info col-2">Update</button>
+            </form>
+            <hr>
+            <a th:href="@{/index}">Back to Home</a>
+
+        </div>
+    </section>
+</main>
+<div th:insert="fragments.html::footer"></div>
+<div th:insert="fragments.html::scripts"></div>
+</body>
+</html>

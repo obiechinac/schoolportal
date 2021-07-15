@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="fragments.html::headerfiles">
+
+    <title>Departments</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<main id="main">
+    <section id="about" class="about">
+
+<div class="container">
+    <ol class="breadcrumb">
+        <li><a href="/index">Home</a> </li>
+        <li><a href="#">Get Help</a> </li>
+    </ol>
+
+    <h2>Our Departments</h2>
+
+    <div class="col-md-9">
+        <div class="" th:each= "department : ${departments}">
+                <div class="product-info simpleCart_shelfItem">
+                    <div class="product-info-cust">
+                      <span>Department of </span>  <h4 th:text="${department.deptName}"></h4>
+                        <h3 th:text="|Faculty of  ${department.faculty.facultyName}"></h3>
+                        <a class="btn btn-info col-2"  th:href="@{/department/editDeptForm(deptId=${department.deptId})}">Edit?</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+        </div>
+    </div>
+
+</div>
+    </section>
+</main>
+<div th:insert="fragments.html::footer"></div>
+<div th:insert="fragments.html::scripts"></div>
+
+</body>
+</html>

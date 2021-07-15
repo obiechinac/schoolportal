@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html::headerfiles">
+    <title>Lecturers</title>
+
+</head>
+</head>
+<body>
+<header th:replace="fragments.html::nav">
+</header>
+<main id="main">
+    <section id="about" class="about">
+    <div class="container">
+        <h1 class="h1 text-center">Lecturers</h1>
+
+        <div class="card-deck">
+            <div th:each="lecturer,iter : ${lecturers}" class="col-md-6 col-lg-3" style=" padding-bottom: 15px;">
+                <div class="card">
+                    <div class="card-block text-center">
+                        <img height="100px" style="margin-bottom: 5px; border: 1px solid black;"
+                             th:src="${lecturer.picturePath} ? (|/mm_pics/${lecturer.picturePath}|) : 'http://www.hghtherapy.me/wp-content/uploads/2012/02/happy-doctor4.jpg'" alt=""/>
+                        <h4 class="card-title">
+                            <a class="h2 text-centre" th:text="|Welcome  ${lecturer.lecturerTitle} ${lecturer.surName}|" th:href="|/lecturer/lecturers/${lecturer.lecturerId}|"></a>
+
+                        </h4>
+                        <a class="btn btn-info col-2"  th:href="@{/editLecturer(lecturerId=${lecturer.lecturerId})}">Edit?</a>
+
+                        <br/>
+                        <small class="text-muted"
+                               th:text="|Experience: ${#dates.year(#dates.createNow()) - #dates.year(lecturer.dateOfemployment) + 0} years|"></small>
+                        <br/>
+                        <small class="text-muted" th:text="|Telephone: ${lecturer.telephoneNumber}|">Telephone number: #
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav aria-label="Page navigation example" th:if="!${#lists.isEmpty(lecturers)}">
+            <ul class="pagination">
+                <li class="page-item" th:classappend="!${lecturers.hasPrevious()}? 'disabled'">
+                    <a class="page-link"
+                       th:href="${lecturers.hasPrevious()} ? '/lecturers?page=' + ${lecturers.previousPageable().getPageNumber()}">Previous</a>
+                </li>
+                <li class="page-item" th:each="i : ${#numbers.sequence(0, lecturers.getTotalPages() - 1)}">
+                    <a class="page-link" href="#" th:href="|/lecturers?page=${i}|" th:text="${i + 1}">1</a>
+                </li>
+                <li class="page-item" th:classappend="!${lecturers.hasNext()}? 'disabled'">
+                    <a class="page-link" href="#"
+                       th:href="${lecturers.hasNext()} ? '/lecturers?page=' + ${lecturers.nextPageable().getPageNumber()}">Next</a>
+                </li>
+            </ul>
+        </nav>
+
+        <br/>
+    </div>
+    </section>
+</main>
+
+<!--<div th:replace="fragment/parts::scripts">-->
+<!--</div>-->
+</body>
+</html>

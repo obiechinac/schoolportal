@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:insert="fragments.html::headerfiles">
+
+
+    <title>Save Program</title>
+</head>
+<body>
+<header th:insert="fragments.html::nav"></header>
+<main id="main">
+<section id="about" class="about">
+<div class="container">
+    <h3>Add Program</h3>
+    <hr>
+    <p class="h4 mb-3">Save Program</p>
+
+    <form action="#" th:action="@{/program/saveProgram}" th:object="${program}"
+          method="POST">
+
+        <!-- add a hidden form field to handle the update and delete -->
+        <input type="hidden" th:field="*{programeId}"/>
+
+        <input type="text" th:field="*{programName}"
+               class="form-control mb-4 col-4" placeholder="Program Name : Bsc English">
+        <button type="submit" class="btn btn-info col-2">Save</button>
+    </form>
+    <hr>
+    <a th:href="@{/index}">Back to Home</a>
+
+</div>
+</section>
+</main>
+<footer th:insert="fragments.html::footer"></footer>
+<script th:insert="fragments.html::scripts"></script>
+</body>
+</html>
